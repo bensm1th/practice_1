@@ -9,7 +9,6 @@ var express             = require('express'),
     passport            = require('passport'),
     localStrategy       = require('passport-local'),
     flash               = require('connect-flash'),
-    FacebookStrategy    = require('passport-facebook'),
     config              = require('./config/config'),
     //ROUTES
     userRoutes          = require('./routes/users'),
