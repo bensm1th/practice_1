@@ -34,27 +34,6 @@ passport.use(new localStrategy(Manager.authenticate()));
 passport.serializeUser(Manager.serializeUser());
 passport.deserializeUser(Manager.deserializeUser());
 
-passport.use(new FacebookStrategy({
-    clientID: config.facebookId,
-    clientSecret: config.facebookSecret,
-    callbackURL: config.facebookURL
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-      return cb(err, user);
-    });
-  }
-));
-
-app.get('/auth/facebook',
-  passport.authenticate('facebook'));
-
-app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-  });
 
 app.use(function(req, res, next) {
     res.locals.currentUser = req.user;
