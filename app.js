@@ -10,12 +10,13 @@ var express             = require('express'),
     localStrategy       = require('passport-local'),
     flash               = require('connect-flash'),
     FacebookStrategy    = require('passport-facebook'),
+    config              = require('./config/config'),
     //ROUTES
     userRoutes          = require('./routes/users'),
     managerRoutes       = require('./routes/managers');
 
 
-mongoose.connect('mongodb://localhost/practice_1');
+mongoose.connect(config.dbLocation);
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
@@ -23,7 +24,7 @@ app.use(methodOverride("_method"));
 app.use(flash());
 //PASSPORT CONFIG
 app.use(require('express-session')({
-    secret: "Out of many, One",
+    secret: config.passportSecret,
     resave: false,
     saveUninitialized: false
 }));
@@ -34,9 +35,9 @@ passport.serializeUser(Manager.serializeUser());
 passport.deserializeUser(Manager.deserializeUser());
 
 passport.use(new FacebookStrategy({
-    clientID: 290461301336785,
-    clientSecret: '6d708f92562865377323ab7a8d1aa80f',
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
+    clientID: config.facebookId,
+    clientSecret: config.facebookSecret,
+    callbackURL: config.facebookURL
   },
   function(accessToken, refreshToken, profile, cb) {
     User.findOrCreate({ facebookId: profile.id }, function (err, user) {
