@@ -1,0 +1,33 @@
+<% include ../partials/header %>
+
+    <div class="ui container">
+        <form class="ui form" action="/users/<%= user._id %>?_method=PUT"  method="POST">
+            <div class="field">
+                <label>First Name</label>
+                <div class="ui input focus field">
+                    <input type="text" name='user[firstName]' value="<%= user.firstName %>">
+                </div>
+            </div>
+            <div class="field">
+                <label>Last Name</label>
+                <div class="ui input focus">
+                    <input type="text" name='user[lastName]' value="<%= user.lastName %>">
+                </div>
+            </div>
+            <div class="field">
+                <label>User Name</label>
+                <div class="ui input focus">
+                    <input type="text" name='user[username]' value="<%= user.username %>">
+                </div>
+            </div>
+            <div class="field">
+                <label>Employee Number</label>
+                <div class="ui input focus">
+                    <input type="text" name='user[employeeNumber]' value="<%= user.employeeNumber %>">
+                </div>
+            </div>
+            <input type="submit" value="Submit" class="ui orange basic button">
+        </form>
+    </div>
+
+<% include ../partials/footer %>

@@ -1,0 +1,22 @@
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '290461301336785',
+      xfbml      : true,
+      version    : 'v2.7'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+appId
+290461301336785
+secret
+6d708f92562865377323ab7a8d1aa80f

@@ -1,0 +1,20 @@
+<% include partials/header %>
+
+<div class="ui container">
+    <div class="ui segments">
+        <div class="ui segment">
+            Users
+        </div>
+        <% user.forEach(user=> { %>
+        <div class="ui segments">
+            <div class="ui secondary raised segment">
+                <a href="/users/<%= user._id %>">
+                    <%= user.firstName + " " + user.lastName %>
+                </a>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+</div>
+
+<% include partials/footer %>
